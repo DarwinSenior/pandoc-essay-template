@@ -1,0 +1,55 @@
+\documentclass[a4paper,$if(fontsize)$$fontsize$$endif$]{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage{hyperref}
+\usepackage[protrusion=true,expansion=true]{microtype}
+\usepackage{wrapfig}
+\usepackage{mathpazo}
+\usepackage[T1]{fontenc}
+\usepackage[backend=biber,
+$if(citation)$style=$citation$,$endif$
+]{biblatex}
+$for(bibliography)$
+\addbibresource{$bibliography$}
+$endfor$
+
+$if(numbersections)$
+\setcounter{secnumdepth}{5}
+$else$
+\setcounter{secnumdepth}{0}
+$endif$
+
+$if(doublespace)$
+\usepackage{setspace}
+\doublespacing
+
+$endif$
+\makeatletter
+\renewcommand{\maketitle}{
+    \begin{flushright}
+        {\LARGE\@title}
+
+        \vspace{50pt}
+
+        {\large\@author}\\
+        \@date
+
+        \vspace{40pt}
+    \end{flushright}
+}
+
+$if(title)$\title{$title$}$endif$
+$if(author)$\author{$author$}$endif$
+\date{$if(date)$$date$$else$\today$endif$}
+
+\begin{document}
+
+\maketitle
+
+$body$
+
+\medskip
+
+\printbibliography[title={reference}]
+
+\end{document}
